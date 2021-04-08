@@ -61,10 +61,23 @@ def remove_noise(tweet_tokens, stop_words = ()):
             cleaned_tokens.append(token.lower())
     return cleaned_tokens
         
-print(remove_noise(tweet_tokens[0], stop_words))
+#print(remove_noise(tweet_tokens[0], stop_words))
 
 #Clean all positive and negative tweets
-        
+positive_tweets_tokens = twitter_samples.tokenized('positive_tweets.json')
+negative_tweets_tokens = twitter_samples.tokenized('negative_tweets.json')    
+
+cleaned_positive_tokens_list = []
+cleaned_negative_tokens_list = []
+
+for tokens in positive_tweets_tokens:
+    cleaned_positive_tokens_list.append(remove_noise(tokens, stop_words))
+
+for tokens in negative_tweets_tokens:
+    cleaned_negative_tokens_list.append(remove_noise(tokens, stop_words))
+    
+print(positive_tweets_tokens[500])
+print(cleaned_positive_tokens_list[500])
         
         
         
