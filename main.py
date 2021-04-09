@@ -13,6 +13,7 @@ from nltk.corpus import stopwords
 from nltk.tag import pos_tag
 from nltk.stem.wordnet import WordNetLemmatizer
 import re, string
+from nltk import FreqDist
 
 stop_words = stopwords.words("english")
 positive_tweets = twitter_samples.strings("positive_tweets.json")
@@ -76,9 +77,18 @@ for tokens in positive_tweets_tokens:
 for tokens in negative_tweets_tokens:
     cleaned_negative_tokens_list.append(remove_noise(tokens, stop_words))
     
-print(positive_tweets_tokens[500])
-print(cleaned_positive_tokens_list[500])
-        
+#print(positive_tweets_tokens[500])
+#print(cleaned_positive_tokens_list[500])
+
+def get_all_words(cleaned_tokens_list):
+    for tokens in cleaned_tokens_list:
+        for token in tokens:
+            yield token
+
+all_pos_words = get_all_words(cleaned_positive_tokens_list)
+
+freq_dist_pos = FreqDist(all_pos_words)
+print(freq_dist_pos.most_common(10))
         
         
         
