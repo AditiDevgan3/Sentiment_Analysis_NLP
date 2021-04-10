@@ -88,7 +88,7 @@ def get_all_words(cleaned_tokens_list):
 all_pos_words = get_all_words(cleaned_positive_tokens_list)
 
 freq_dist_pos = FreqDist(all_pos_words)
-print(freq_dist_pos.most_common(10))
+#print(freq_dist_pos.most_common(10))
         
         
         
