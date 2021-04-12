@@ -14,6 +14,10 @@ from nltk.tag import pos_tag
 from nltk.stem.wordnet import WordNetLemmatizer
 import re, string
 from nltk import FreqDist
+import random
+from nltk import classify
+from nltk import NaiveBayesClassifier
+from nltk.tokenize import word_tokenize
 
 stop_words = stopwords.words("english")
 positive_tweets = twitter_samples.strings("positive_tweets.json")
@@ -89,10 +93,38 @@ all_pos_words = get_all_words(cleaned_positive_tokens_list)
 
 freq_dist_pos = FreqDist(all_pos_words)
 #print(freq_dist_pos.most_common(10))
-        
-        
-        
-        
+
+def get_tweets_for_model(cleaned_tokens_list):
+    for tweet_tokens in cleaned_tokens_list:
+        yield dict([token, True] for token in tweet_tokens)
+
+positive_tokens_for_model = get_tweets_for_model(cleaned_positive_tokens_list)
+negative_tokens_for_model = get_tweets_for_model(cleaned_negative_tokens_list)
+
+positive_dataset = [(tweet_dict, "Positive")
+                     for tweet_dict in positive_tokens_for_model]
+
+negative_dataset = [(tweet_dict, "Negative")
+                     for tweet_dict in negative_tokens_for_model]
+
+dataset = positive_dataset + negative_dataset
+
+random.shuffle(dataset)
+
+train_data = dataset[:7000]
+test_data = dataset[7000:]      
+
+classifier = NaiveBayesClassifier.train(train_data)
+
+print("Accuracy is:", classify.accuracy(classifier, test_data))
+
+#print(classifier.show_most_informative_features(10))
+
+custom_tweet = "I never watched that terrible movie!"
+
+custom_tokens = remove_noise(word_tokenize(custom_tweet))
+
+print(classifier.classify(dict([token, True] for token in custom_tokens)))
         
         
         
