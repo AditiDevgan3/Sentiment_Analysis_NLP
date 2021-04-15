@@ -4,14 +4,13 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css')}}">
     </head>
     <body>
         <div class="loginbox">
         <a href="/"><img src="https://cdn.freelogovectors.net/wp-content/uploads/2015/06/Twitter.jpg" class="avatar"></a>
             <h1>Sentiment Analysis</h1>
-            <form method="post" name="Userinput" id="Userinput" action="/sentiment">
+            <form method="post" name="Userinput" id="Userinput" action="{{url_for('sentiment')}}">
                 <p>UserID</p>
                 <input type="text" name="userid" placeholder="Enter UserID without @">
                 <p>HashTag</p>
