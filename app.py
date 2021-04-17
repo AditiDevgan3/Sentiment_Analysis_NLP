@@ -18,7 +18,7 @@ def sentiment():
     hashtag = request.form.get('hashtag')
 
     if userid == "" and hashtag == "":
-        error = "Please Enter any one value"
+        error = "Please Enter the values"
         return render_template('index.html', error=error)
     
     elif userid == "" or hashtag == "":

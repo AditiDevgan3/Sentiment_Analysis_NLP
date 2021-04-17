@@ -120,7 +120,7 @@ print("Accuracy is:", classify.accuracy(classifier, test_data))
 
 #print(classifier.show_most_informative_features(10))
 
-custom_tweet = "I never watched that terrible movie!"
+custom_tweet = input()
 
 custom_tokens = remove_noise(word_tokenize(custom_tweet))
 
