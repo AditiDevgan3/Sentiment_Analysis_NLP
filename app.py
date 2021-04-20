@@ -39,7 +39,7 @@ def lemmatize_sentence(tokens):
         lemmatized_sentence.append(lemmatizer.lemmatize(word, pos))
     return lemmatized_sentence
 
-#print(lemmatize_sentence(tweet_tokens[0]))
+
 
 #Removing noise 
 
@@ -66,7 +66,7 @@ def remove_noise(tweet_tokens, stop_words = ()):
             cleaned_tokens.append(token.lower())
     return cleaned_tokens
         
-#print(remove_noise(tweet_tokens[0], stop_words))
+
 
 #Clean all positive and negative tweets
 positive_tweets_tokens = twitter_samples.tokenized('positive_tweets.json')
@@ -81,8 +81,6 @@ for tokens in positive_tweets_tokens:
 for tokens in negative_tweets_tokens:
     cleaned_negative_tokens_list.append(remove_noise(tokens, stop_words))
     
-#print(positive_tweets_tokens[500])
-#print(cleaned_positive_tokens_list[500])
 
 def get_all_words(cleaned_tokens_list):
     for tokens in cleaned_tokens_list:
@@ -92,7 +90,7 @@ def get_all_words(cleaned_tokens_list):
 all_pos_words = get_all_words(cleaned_positive_tokens_list)
 
 freq_dist_pos = FreqDist(all_pos_words)
-#print(freq_dist_pos.most_common(10))
+
 
 def get_tweets_for_model(cleaned_tokens_list):
     for tweet_tokens in cleaned_tokens_list:
@@ -118,7 +116,7 @@ classifier = NaiveBayesClassifier.train(train_data)
 
 print("Accuracy is:", classify.accuracy(classifier, test_data))
 
-#print(classifier.show_most_informative_features(10))
+
 
 #############################################################################################
 from flask import Flask, render_template,request
@@ -156,7 +154,7 @@ def sentiment():
 if __name__ == "__main__":
     app.run()
 
-#custom_tweet = input()
+
 
 
 
