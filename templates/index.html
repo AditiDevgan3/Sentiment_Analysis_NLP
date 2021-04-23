@@ -3,10 +3,25 @@
         <title>Twitter Sentiment Analysis || Aditi Devgan</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css')}}">
+      <style>
+       div {
+	position: relative;
+	}
+
+	.mybutton {
+	background-color: transparent;
+        color: white; 
+        padding: 15px 32px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	}
+      </style>
     </head>
     <body>
+	
         <div class="loginbox">
         <a href="/"><img src="https://cdn.freelogovectors.net/wp-content/uploads/2015/06/Twitter.jpg" class="avatar"></a>
             <h1>Sentiment Analysis</h1>
@@ -25,5 +40,6 @@
 
             </form>  
         </div>
+        <div><button class = "mybutton">About Me</button></div>
     </body>
 </html>
