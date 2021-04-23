@@ -119,12 +119,17 @@ print("Accuracy is:", classify.accuracy(classifier, test_data))
 
 
 #############################################################################################
-from flask import Flask, render_template,request
+from flask import Flask, render_template, request
+
 app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
     return render_template('index.html')
+
+@app.route('/about')
+def about_me():
+    return render_template('about.html')
 
 @app.route('/sentiment', methods = ['GET','POST'])
 def sentiment():
