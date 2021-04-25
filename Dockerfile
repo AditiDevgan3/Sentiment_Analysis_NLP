@@ -6,6 +6,7 @@ ADD . /app
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
+RUN python -m nltk.downloader twitter_samples
 
 
 EXPOSE 5000 2222
