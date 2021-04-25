@@ -6,7 +6,6 @@ Created on Mon Apr  5 12:25:48 2021
 """
 
 import nltk
-nltk.data.path.append('C:\Users\Aditi Devgan\AppData\Local\Programs\Python\Python37')
 nltk.download('twitter_samples')
 nltk.download('punkt')
 
