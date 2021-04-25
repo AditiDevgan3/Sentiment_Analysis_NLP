@@ -131,6 +131,10 @@ def hello_world():
 def about_me():
     return render_template('about.html')
 
+@app.route('/index')
+def home():
+    return render_template('index.html')
+
 @app.route('/sentiment', methods = ['GET','POST'])
 def sentiment():
     userid = request.form.get('userid')
