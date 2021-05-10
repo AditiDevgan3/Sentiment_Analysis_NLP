@@ -11,7 +11,6 @@ RUN python -m nltk.downloader punkt
 RUN python -m nltk.downloader wordnet
 RUN python -m nltk.downloader averaged_perceptron_tagger
 
-
 EXPOSE 5000 2222
 
 ENV NAME OpentoAll

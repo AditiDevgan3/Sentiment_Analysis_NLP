@@ -134,43 +134,28 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return render_template('index.html')
+    return render_template('index1.html')
 
 @app.route('/about')
 def about_me():
     return render_template('about.html')
 
-@app.route('/index')
-def home():
-    return render_template('index.html')
 
 @app.route('/sentiment', methods = ['GET','POST'])
-def sentiment():
-    userid = request.form.get('userid')
+def sentiment(): 
     hashtag = request.form.get('hashtag')
-    
-
-    if userid == "" and hashtag == "":
-        error = "Please Enter the values"
-        return render_template('index.html', error=error)
-    
-    elif userid == "" or hashtag == "":
-        error = "Both entry not allowed"
-        return render_template('index.html', error=error)
-    
+    custom_tokens = remove_noise(word_tokenize(hashtag))
+    major = classifier.classify(dict([token, True] for token in custom_tokens))
+    print(major)
+    if major == "Positive":
+        return render_template('sentiment.html')
     else:
-        custom_tokens = remove_noise(word_tokenize(hashtag))
-        major = classifier.classify(dict([token, True] for token in custom_tokens))
-        print(major)
-        if major == "Positive":
-            return render_template('sentiment.html')
-        else:
-            return render_template('sentimentsTemp.html')
+        return render_template('sentimentsTemp.html')
     
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=5000)
+    app.run(host="0.0.0.0")
 
 
 

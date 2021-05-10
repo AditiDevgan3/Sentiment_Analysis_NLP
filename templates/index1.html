@@ -1,4 +1,6 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
     <head>
         <title>Twitter Sentiment Analysis || Aditi Devgan</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -24,16 +26,16 @@
     <body>
 	
         <div class="loginbox">
-        <a href="/"><img src="https://cdn.freelogovectors.net/wp-content/uploads/2015/06/Twitter.jpg" class="avatar"></a>
+        <a href="/"><img src="https://cdn.freelogovectors.net/wp-content/uploads/2015/06/Twitter.jpg" alt="image" class="avatar"></a>
             <h1>Sentiment Analysis</h1>
             <form method="post" name="Userinput" id="Userinput" action="{{url_for('sentiment')}}">
                 <p>UserID</p>
-                <input type="text" name="userid" placeholder="Enter UserID without @">
+                <input type="text" name="userid" placeholder="Enter UserID without @" required>
                 <p>HashTag</p>
-                <input type="text" name="hashtag" placeholder="Enter HashTag">
-                <center><button type="submit" class="btn btn-light btn-outline-success" id="sendMessageButton">Get Analysis</button></center>
+                <input type="text" name="hashtag" placeholder="Enter HashTag" required>
                 <br>
-		<center><a href="/"><h6 style="color: red" >{{ error }}</h6></a></center>
+                <div class="text-center"><button type="submit" class="btn btn-light btn-outline-success" id="sendMessageButton">Get Analysis</button></div>
+                <br>
                 <a href="https://www.linkedin.com/in/aditi-devgan-825400192/" class="fa fa-linkedin-square" style="font-size:36px" target="_black"></a>
                 <a href="https://github.com/AditiDevgan3" class="fa fa-github" style="font-size:36px" target="_black"> </a>
                 <a href="https://twitter.com/AditiDevgan3" class="fa fa-twitter-square" style="font-size:36px" target="_black"> </a>
