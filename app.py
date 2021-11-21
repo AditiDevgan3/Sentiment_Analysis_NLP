@@ -128,9 +128,19 @@ print("Accuracy is:", classify.accuracy(classifier, test_data))
 
 
 #############################################################################################
-from flask import Flask, render_template, request
+import flask
+from flask import Flask, url_for, request, render_template, jsonify
+import os
+from flask_pymongo import PyMongo
+import pymongo
+from pymongo import MongoClient
 
 app = Flask(__name__)
+app.config['MONGO_URI'] = 'mongodb+srv://aakashv8900:aakashv8900@cluster0.2r0iu.mongodb.net/sentiments?retryWrites=true&w=majority'
+app.config['MONGO_DBNAME'] = 'sentiments'
+mongo = PyMongo(app)
+db = mongo.db
+col = mongo.db["data"]
 
 @app.route('/')
 def hello_world():
@@ -148,14 +158,21 @@ def sentiment():
     major = classifier.classify(dict([token, True] for token in custom_tokens))
     print(major)
     if major == "Positive":
+        userid = request.form.get('userid')
+        hashtag = request.form.get('hashtag')
+        col.insert({'major':major, 'userid':userid, 'hashtag':hashtag})
         return render_template('sentiment.html')
     else:
+        userid = request.form.get('userid')
+        hashtag = request.form.get('hashtag')
+        col.insert({'major':major, 'userid':userid, 'hashtag':hashtag})
         return render_template('sentimentsTemp.html')
+    
     
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1")
+    app.run(host="0.0.0.0",debug=True)
 
 
 
